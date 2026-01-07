@@ -112,7 +112,7 @@ async def init_db():
             ('owner', '@owner'),
             ('buyer', '@buyer'),
             ('curator', '@curator'),
-            ('shop', '@HellCashShop_bot')
+            ('shop', '@shop')
         ''')
         
         # Добавляем админов
@@ -793,14 +793,14 @@ async def process_contacts(callback: CallbackQuery):
     """Обработчик кнопки Контакты"""
     contacts = await get_contacts()
     contacts_message = (
-        "📞 *КОНТАКТЫ*\n\n"
+        "📞 <b>КОНТАКТЫ</b>\n\n"
         f"👑 Владелец: {contacts.get('owner', 'Не указан')}\n"
         f"💰 Скуп: {contacts.get('buyer', 'Не указан')}\n"
         f"👨‍💼 Куратор: {contacts.get('curator', 'Не указан')}\n"
         f"🛒 Шоп: {contacts.get('shop', 'Не указан')}\n\n"
         "➖➖➖➖➖➖➖➖"
     )
-    await callback.message.answer(contacts_message, parse_mode="Markdown")
+    await callback.message.answer(contacts_message, parse_mode="HTML")
     await callback.answer()
 
 # ========== АДМИНСКИЕ ФУНКЦИИ ==========
@@ -946,7 +946,7 @@ async def process_new_username(message: Message, state: FSMContext):
     contacts = await get_contacts()
     contacts_message = (
         "✅ Контакты обновлены!\n\n"
-        "📞 *КОНТАКТЫ*\n\n"
+        "📞 <b>КОНТАКТЫ</b>\n\n"
         f"👑 Владелец: {contacts.get('owner', 'Не указан')}\n"
         f"💰 Скуп: {contacts.get('buyer', 'Не указан')}\n"
         f"👨‍💼 Куратор: {contacts.get('curator', 'Не указан')}\n"
@@ -1078,5 +1078,4 @@ async def main():
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
-
     asyncio.run(main())
