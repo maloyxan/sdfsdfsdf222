@@ -112,7 +112,7 @@ async def init_db():
             ('owner', '@owner'),
             ('buyer', '@buyer'),
             ('curator', '@curator'),
-            ('shop', '@shop')
+            ('shop', '@HellCashShop_bot')
         ''')
         
         # Добавляем админов
@@ -1078,4 +1078,5 @@ async def main():
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
+
     asyncio.run(main())
